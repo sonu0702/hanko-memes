@@ -1,7 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-
+import Link from 'next/link'
+// import { Separator } from "@/components/ui/separator"
+import { buttonVariants } from "@/components/ui/button"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,7 +18,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div style={{ display: "flex", justifyContent: 'center', marginTop: "60px", }}>
+          <Link href="/dashboard" 
+          style={{ marginRight: '8px' }}
+          className={buttonVariants({ variant: "secondary" })}
+          > Profile </Link>
+          
+          {/* <Link href="/login"> Login </Link> */}
+          <Link href="/memetemplates" style={{ marginRight: '8px' }}
+          className={buttonVariants({ variant: "secondary" })} > Meme Templates </Link>
+          
+          <Link href="/mymemes" style={{ marginRight: '8px' }}
+          className={buttonVariants({ variant: "secondary" })}
+          > My Memes </Link>
+          
+          <Link href="/generatememe" style={{ marginRight: '8px' }}
+          className={buttonVariants({ variant: "secondary" })}
+          > Generate Meme </Link>
+        </div>
+        {children}
+      </body>
     </html>
   )
 }
