@@ -24,14 +24,22 @@ export default function GenerateMeme() {
         topcaption: "", bottomcaption: ""
     })
     let [topCaption, setTopCaption] = useState("")
+    let [searchParamsValue, setSearchParams] = useState({templateid:"",url:""});
     const searchParams = useSearchParams()
-    const templateid = searchParams.get('templateid')!
-    const url = searchParams.get('url')!
+    useEffect(() => {
+        const templateid = searchParams.get('templateid')!
+        const url = searchParams.get('url')!
+        setSearchParams((prevSearchParams) => ({
+            ...prevSearchParams,
+            templateid: templateid,
+            url: url
+        }))
+    },[searchParams])
 
     const readInputs = (e: any) => {
         e.preventDefault()
         console.log(`e`, e.target.value, e.target.name, "e.target.name", e.target.id);
-        let {id,value} = e.target;
+        let { id, value } = e.target;
         // setArguments((value) => Object.assign(value, { [e.target.id]: e.target.value }))
         setArguments((prevArgument) => ({
             ...prevArgument,
@@ -52,8 +60,8 @@ export default function GenerateMeme() {
     }
 
     return <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-        {templateid
-            ? <MemeCard templateId={templateid} url={url} name="" />
+        {searchParamsValue?.templateid
+            ? <MemeCard templateId={searchParamsValue?.templateid} url={searchParamsValue.url} name="" />
             :
             <div>
                 <Button asChild>
@@ -74,15 +82,15 @@ export default function GenerateMeme() {
                             <div className="grid w-full items-center gap-4">
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="topic">Topic</Label>
-                                    <Input id="topic" placeholder="Watching a youtube video!" 
-                                    onChange={readInputs}
-                                    value={argument.topic} />
+                                    <Input id="topic" placeholder="Watching a youtube video!"
+                                        onChange={readInputs}
+                                        value={argument.topic} />
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="audience">Audience</Label>
                                     <Input id="audience" placeholder="Junior developers"
-                                     onChange={readInputs}
-                                     value={argument.audience} />
+                                        onChange={readInputs}
+                                        value={argument.audience} />
                                 </div>
                             </div>
                         </form>
@@ -118,7 +126,7 @@ export default function GenerateMeme() {
             </div>
 
         </div>
-        <CardFooter style={{marginTop:"8px"}}>
+        <CardFooter style={{ marginTop: "8px" }}>
             <Button onClick={generateMeme}>Generate Meme</Button>
         </CardFooter>
     </div>

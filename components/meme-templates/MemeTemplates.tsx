@@ -26,7 +26,7 @@ export default function MemeTemplates() {
     }
     return <div>
         {templates.map((template) => {
-            return <div onClick={() => handleMemeSelection(template.templateId, template.url)}
+            return <div key={template.templateId} onClick={() => handleMemeSelection(template.templateId, template.url)}
                 style={{ cursor: 'pointer' }}>
                 <MemeCard key={template.templateId} templateId={template.templateId}
                     name={template.name} url={template.url} />

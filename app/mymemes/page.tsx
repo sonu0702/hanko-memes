@@ -1,6 +1,6 @@
 import MyMemes from "@/components/my-memes/MyMemes";
 
-const DashboardPage = () => {
+const MyMemesPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <MyMemes/>
@@ -8,4 +8,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default MyMemesPage;

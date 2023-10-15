@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Hanko } from "@teamhanko/hanko-elements";
+import { register } from "@teamhanko/hanko-elements";
 
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL;
+
 
 export function LogoutBtn() {
   const router = useRouter();
-  const [hanko, setHanko] = useState<Hanko>();
+  const [hanko, setHanko] = useState<any>();
 
   useEffect(() => {
-    import("@teamhanko/hanko-elements").then(({ Hanko }) =>
-      setHanko(new Hanko(hankoApi ?? ""))
-    );
+    // import("@teamhanko/hanko-elements").then(({ Hanko }) =>
+    //   setHanko(new Hanko(hankoApi ?? ""))
+    // );
+    const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL!;
+    register(hankoApi).then(({hanko}) => setHanko(hanko));
   }, []);
 
   const logout = async () => {

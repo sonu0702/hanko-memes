@@ -1,11 +1,19 @@
+"use client"
+import { Suspense } from 'react'
 import GenerateMeme from "@/components/generate-meme/GenerateMeme";
+function SearchBarFallback() {
+  return <>placeholder</>
+}
 
-const DashboardPage = () => {
+const GenerateMemePage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <GenerateMeme/>
+      <Suspense fallback={<SearchBarFallback />}>
+        <GenerateMeme />
+      </Suspense>
+
     </div>
   );
 };
 
-export default DashboardPage;
+export default GenerateMemePage;
