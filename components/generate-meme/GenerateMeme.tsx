@@ -15,16 +15,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import MemeCard from "../MemeCard";
 import Link from "next/link";
+import { generateMyMeme, giveAICaption } from "@/lib/api";
 
 
 
-export default function GenerateMeme() {
+export default function GenerateMeme(props: { token: string }) {
     let [argument, setArguments] = useState({
         topic: "", audience: "",
         topcaption: "", bottomcaption: ""
     })
-    let [topCaption, setTopCaption] = useState("")
-    let [searchParamsValue, setSearchParams] = useState({templateid:"",url:""});
+    let [searchParamsValue, setSearchParams] = useState({ templateid: "", url: "" });
     const searchParams = useSearchParams()
     useEffect(() => {
         const templateid = searchParams.get('templateid')!
@@ -34,7 +34,7 @@ export default function GenerateMeme() {
             templateid: templateid,
             url: url
         }))
-    },[searchParams])
+    }, [searchParams])
 
     const readInputs = (e: any) => {
         e.preventDefault()
@@ -48,15 +48,34 @@ export default function GenerateMeme() {
     }
 
     const generateMeme = () => {
+        generateMyMeme({
+            templateId: searchParamsValue.templateid,
+            text0: argument.topcaption, text1: argument.bottomcaption
+        }, props.token)
+            .then(data => {
+                setSearchParams((prevSearchParams) => ({
+                    ...prevSearchParams,
+                    url: data?.imageurl?.url
+                }));
+            })
+            .catch(err => console.log("generateMyMeme", err));
         console.log("arguments", argument)
     }
 
     const generateAICaption = () => {
-        setArguments((prevArgument) => ({
-            ...prevArgument,
-            topcaption: 'hello top',
-            bottomcaption: 'hello bottom'
-        }))
+        giveAICaption({
+            topic: argument.topic || "topic",
+            audience: argument.audience || "audience",
+            templateName: "templateName"
+        }).then(data => {
+            console.log("giveAICaption", data);
+            setArguments((prevArgument) => ({
+                ...prevArgument,
+                topcaption: 'hello top',
+                bottomcaption: 'hello bottom'
+            }))
+        })
+
     }
 
     return <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
