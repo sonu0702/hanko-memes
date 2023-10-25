@@ -7,15 +7,25 @@
 - Technologies: NextJs, Hanko Authentication, Supabase, ui.shadcn
 
 
-```bash
-pnpm install
-```
-
 ## Run the project
 
+### Install all packages
 ```bash
-pnpm run dev
+   yarn install
+```
+### .env file , generate your [hanko api url](https://docs.hanko.io/setup-hanko-cloud) 
+```bash
+   copy content of .env.example into .env
 ```
 
+### Run the server
+```bash
+   npm run dev
+```
 
+The application connects with backend server deployed on Netlify.
+You can find code [hanko-memes-be] (https://github.com/sonu0702/hanko-memes-be)
+If you want to check out just the frontend integration of 
+Hanko Authentication just explore frontend repo [hanko-memes](https://github.com/sonu0702/hanko-memes)
 
+For the frontend integration of the Hanko Authentication I used [hanko-nextjs-starter](https://github.com/teamhanko/hanko-nextjs-starter). It is very helpfull and I would recomment this since it will give clear picture of authentication flow. The other which developers has is [Hanko documentation](https://docs.hanko.io/quickstarts/frontend/react).
