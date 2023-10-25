@@ -1,4 +1,4 @@
-# Hanko Memes
+## Hanko Memes
 
 - It is an AI-based fun project which lets anyone create memes.
 - This project is part of a hackathon to create any functioning app that can be hosted online with Hanko auth integrated.
@@ -99,4 +99,4 @@ It is as simple as it looks. Hanko has followed JWT token standards for user aut
 
 I have used standard ```jsonwebtoken``` and ```jwks-rsa``` libraries. This help me get the public key using that I have verifed the JWT token to extract userId.
 
-By participating in (this)[https://www.hanko.io/hackathon#Apply] hackathon I got to explore Hanko Authentication an awesome authentication library. OpenAI to generate meme captions and Next.Js 13.
+By participating in [Hanko hackathon](https://www.hanko.io/hackathon#Apply) I got to explore Hanko Authentication an awesome authentication library. OpenAI to generate meme captions and Next.Js 13.
