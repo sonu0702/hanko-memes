@@ -10,21 +10,28 @@ Working Application : https://hanko-memes.vercel.app
 
 ## Run the project
 
-## Just clone this repo
+
+### Just clone [hanko-memes](https://github.com/sonu0702/hanko-memes)
+
 
 ### Install all packages
+
 ```bash
    yarn install
 ```
+
 ### .env file , generate your [hanko api url](https://docs.hanko.io/setup-hanko-cloud) 
+
 ```bash
    copy content of .env.example into .env
 ```
 
 ### Run the server
+
 ```bash
    npm run dev
 ```
+
 
 The application connects with the backend server deployed on Netlify.
 You can find the code in [hanko-memes-be] (https://github.com/sonu0702/hanko-memes-be)
